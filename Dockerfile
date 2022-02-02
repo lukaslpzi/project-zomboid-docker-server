@@ -20,4 +20,4 @@ VOLUME "${STEAMAPPDIR}/Saves/"
 VOLUME "${STEAMAPPDIR}/Server/"
 VOLUME "${STEAMAPPDIR}/steamapps/workshop/content/108600/"
 
-CMD	"${STEAMAPPDIR}/start-serve.sh"
+CMD	"${STEAMAPPDIR}/start-server.sh"
