@@ -10,7 +10,7 @@ ENV BETABRANCH b41multiplayer
 RUN "${STEAMCMDDIR}/steamcmd.sh" +force_install_dir ${STEAMAPPDIR}" \
 	+login anonymous \
 	+app_update ${STEAMAPPID} \
-	-beta ${BETABRANCH}
+	-beta ${BETABRANCH} \
 	+quit
 
 USER ${USER}
