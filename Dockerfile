@@ -6,7 +6,7 @@ ENV STEAMAPPID 380870
 ENV STEAMAPP projectzomboid
 ENV STEAMAPPDIR "${HOMEDIR}/${STEAMAPP}-server"
 ENV BETABRANCH b41multiplayer
-	
+
 RUN "${STEAMCMDDIR}/steamcmd.sh" +force_install_dir "${STEAMAPPDIR}" \
 	+login anonymous \
 	+app_update "${STEAMAPPID}" \
@@ -18,5 +18,6 @@ USER ${USER}
 WORKDIR ${HOMEDIR}
 VOLUME "${STEAMAPPDIR}/Saves/"
 VOLUME "${STEAMAPPDIR}/Server/"
-	
+VOLUME "${STEAMAPPDIR}/steamapps/workshop/content/108600/"
+
 CMD	"${STEAMAPPDIR}/start-serve.sh"
