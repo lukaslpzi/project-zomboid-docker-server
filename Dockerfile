@@ -2,6 +2,7 @@ FROM cm2network/steamcmd:root
 
 LABEL maintainer=""
 
+ENV ADMINPASSWORD admin
 ENV STEAMAPPID 380870
 ENV STEAMAPP projectzomboid
 ENV STEAMAPPDIR "${HOMEDIR}/${STEAMAPP}-server"
@@ -20,4 +21,4 @@ VOLUME "${STEAMAPPDIR}/Saves/"
 VOLUME "${STEAMAPPDIR}/Server/"
 VOLUME "${STEAMAPPDIR}/steamapps/workshop/content/108600/"
 
-CMD	"${STEAMAPPDIR}/start-server.sh"
+CMD	"${STEAMAPPDIR}/start-server.sh" -adminpassword "${ADMINPASSWORD}"
