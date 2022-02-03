@@ -16,12 +16,14 @@ RUN "${STEAMCMDDIR}/steamcmd.sh" +force_install_dir "${STEAMAPPDIR}" \
 
 USER ${USER}
 
-RUN mkdir -p "${HOMEDIR}/Zomboid/Saves/" && chown steam:steam "${HOMEDIR}/Zomboid/Saves/"
-RUN mkdir -p "${HOMEDIR}/Zomboid/Server/" && chown steam:steam "${HOMEDIR}/Zomboid/Server/"
+RUN mkdir -p "${HOMEDIR}/Zomboid/Saves/" && chown steam:steam "${HOMEDIR}/Zomboid/Saves/" \
+&& ln -s ${HOMEDIR}/Zomboid/Saves/ /server-saves
+RUN mkdir -p "${HOMEDIR}/Zomboid/Server/" && chown steam:steam "${HOMEDIR}/Zomboid/Server/" \
+&& ln -s ${HOMEDIR}/Zomboid/Server/ /server-conf
 
 WORKDIR ${HOMEDIR}
 
-VOLUME "${HOMEDIR}/Zomboid/Saves/"
-VOLUME "${HOMEDIR}/Zomboid/Server/"
+VOLUME "/server-conf"
+VOLUME "/server-saves"
 
 CMD	"${STEAMAPPDIR}/start-server.sh" -adminpassword "${ADMINPASSWORD}"
