@@ -16,9 +16,12 @@ RUN "${STEAMCMDDIR}/steamcmd.sh" +force_install_dir "${STEAMAPPDIR}" \
 
 USER ${USER}
 
+RUN mkdir -p "${HOMEDIR}/Zomboid/Saves/" && chown steam:steam "${HOMEDIR}/Zomboid/Saves/"
+RUN mkdir -p "${HOMEDIR}/Zomboid/Server/" && chown steam:steam "${HOMEDIR}/Zomboid/Server/"
+
 WORKDIR ${HOMEDIR}
-VOLUME "${STEAMAPPDIR}/Saves/"
-VOLUME "${STEAMAPPDIR}/Server/"
-VOLUME "${STEAMAPPDIR}/steamapps/workshop/content/108600/"
+
+VOLUME "${HOMEDIR}/Zomboid/Saves/"
+VOLUME "${HOMEDIR}/Zomboid/Server/"
 
 CMD	"${STEAMAPPDIR}/start-server.sh" -adminpassword "${ADMINPASSWORD}"
